@@ -1,6 +1,6 @@
 const Benchmark = require('benchmark');
 const { linearSearch, binarySearch } = require('./search');
-const { bubbleSort } = require('./sort');
+const { bubbleSort, quickSort } = require('./sort');
 
 // Use for linear & binary search
 // const numbers = [];
@@ -29,6 +29,10 @@ suite
   .add('bubble sort', function() {
     const testArray = [...numbers];
     bubbleSort(testArray)
+  })
+  .add('quick sort', function() {
+    const testArray = [...numbers];
+    quickSort(testArray);
   })
   .on('complete', function() {
     // loop over and print each result
