@@ -1,4 +1,5 @@
 const Benchmark = require('benchmark');
+const { mostDuplicates } = require('./dupes');
 const { linearSearch, binarySearch } = require('./search');
 const { bubbleSort, quickSort } = require('./sort');
 
@@ -13,8 +14,8 @@ const { bubbleSort, quickSort } = require('./sort');
 
 // Use for bubbleSort
 const numbers = [];
-for (let i = 0; i < 40000; i++) {
-  numbers.push(Math.floor(Math.random() * 10000) + 1);
+for (let i = 0; i < 20000; i++) {
+  numbers.push(Math.floor(Math.random() * 20000) + 1);
 }
 
 const suite = new Benchmark.Suite;
@@ -30,17 +31,20 @@ suite
   //   const testArray = [...numbers];
   //   bubbleSort(testArray)
   // })
-  .add('quick sort', function() {
-    const testArray = [...numbers];
-    quickSort(testArray);
-  })
-  .add('js sort', function() {
-    const testArray = [...numbers];
+  // .add('quick sort', function() {
+  //   const testArray = [...numbers];
+  //   quickSort(testArray);
+  // })
+  // .add('js sort', function() {
+  //   const testArray = [...numbers];
 
-    // benchmark the built in sort method
-    testArray.sort((a, b) => {
-      return a - b;
-    })
+  //   // benchmark the built in sort method
+  //   testArray.sort((a, b) => {
+  //     return a - b;
+  //   })
+  // })
+  .add('duplicates test', function() {
+    mostDuplicates(numbers);
   })
   .on('complete', function() {
     // loop over and print each result
