@@ -13,8 +13,8 @@ const { bubbleSort, quickSort } = require('./sort');
 
 // Use for bubbleSort
 const numbers = [];
-for (let i = 0; i < 5000; i++) {
-  numbers.push(i)
+for (let i = 0; i < 40000; i++) {
+  numbers.push(Math.floor(Math.random() * 10000) + 1);
 }
 
 const suite = new Benchmark.Suite;
@@ -26,13 +26,21 @@ suite
   // .add('binary search', function() {
   //     binarySearch(numbers, target, 0, numbers.length-1)
   // })
-  .add('bubble sort', function() {
-    const testArray = [...numbers];
-    bubbleSort(testArray)
-  })
+  // .add('bubble sort', function() {
+  //   const testArray = [...numbers];
+  //   bubbleSort(testArray)
+  // })
   .add('quick sort', function() {
     const testArray = [...numbers];
     quickSort(testArray);
+  })
+  .add('js sort', function() {
+    const testArray = [...numbers];
+
+    // benchmark the built in sort method
+    testArray.sort((a, b) => {
+      return a - b;
+    })
   })
   .on('complete', function() {
     // loop over and print each result
