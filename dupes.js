@@ -40,4 +40,48 @@ const mostDuplicates = (arr) => {
     return `${mostValue} appeared ${mostCount} times.`;
 };
 
-module.exports = { mostDuplicates };
+// psuedocode for refactor and optimization
+// create empty object map
+
+// loop over array
+//   if array[i] not in map
+//     create new key/value pair on map = 1
+//   else
+//     increment key/value pair by 1
+
+// create variable for most appearing value
+// create variable for most appearing count
+
+// loop over object keys/values
+//   if value > current most appearing count
+//     update "most" variables to match
+
+// return most appearing value and count
+
+const optimizeDuplicates = (arr) => {
+    const map = {};
+
+    for (let i = 0; i < arr.length; i++) {
+        const value = arr[i];
+
+        if (map[value] === undefined) {
+            map[value] = 1;
+        } else {
+            map[value]++;
+        }
+    }
+
+    let mostValue;
+    let mostCount = 0;
+
+    for (const value in map) {
+        if (map[value] > mostCount) {
+            mostCount = map[value];
+            mostValue = value;
+        }
+    }
+
+    return `${mostValue} appeared ${mostCount} times.`;
+}
+
+module.exports = { mostDuplicates, optimizeDuplicates };

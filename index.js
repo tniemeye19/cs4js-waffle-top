@@ -1,5 +1,5 @@
 const Benchmark = require('benchmark');
-const { mostDuplicates } = require('./dupes');
+const { mostDuplicates, optimizeDuplicates } = require('./dupes');
 const { linearSearch, binarySearch } = require('./search');
 const { bubbleSort, quickSort } = require('./sort');
 
@@ -45,6 +45,9 @@ suite
   // })
   .add('duplicates test', function() {
     mostDuplicates(numbers);
+  })
+  .add('optimized dupes test', function() {
+    optimizeDuplicates(numbers);
   })
   .on('complete', function() {
     // loop over and print each result
